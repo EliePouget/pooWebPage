@@ -12,6 +12,8 @@ class WebPage
      */
     public function __construct(string $title = ""){
         $this->title = $title;
+        $this->head = "";
+        $this->body = "";
     }
 
     /**
@@ -97,14 +99,14 @@ class WebPage
      * @return string
      */
     public function toHTML():string{
-        $html= '<html><head>'.getHead($this).'<title>'.getTitle($this).'</title></head><body>'.getBody($this).'<footer>'.getLastModification($this).'</footer></body></html>';
+        $html= '<html lang="fr"><head>'.$this->head.'<meta charset="utf-8"><meta name="viewport"><title>'.$this->title.'</title></head><body>'.$this->body.'<div> '.$this->getLastModification().'</div></body></html>';
         return $html;
     }
 
     /**Donner la date et l'heure de la dernière modification du script principale
      * @return string
      */
-    public function getLastModification():string{
+    public static function getLastModification():string{
         return "Dernière modification de cette page le ".date("d/m/y",getlastmod())." à ".date("H:i:s");
     }
 
@@ -112,7 +114,7 @@ class WebPage
      * @param string $string la chaine à protéger
      * @return string la chaine protégée
      */
-    public function escapeString(string $string):string{
-        return htmlspecialchars($string,48 | 2,"UTF-8");
+    public static function escapeString(string $string):string{
+        return htmlspecialchars($string,3|16,"UTF-8");
     }
 }
