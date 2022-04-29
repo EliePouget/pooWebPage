@@ -99,7 +99,7 @@ class WebPage
      * @return string
      */
     public function toHTML():string{
-        $html= '<html lang="fr"><head>'.$this->head.'<meta charset="utf-8"><meta name="viewport"><title>'.$this->title.'</title></head><body>'.$this->body.'<div> '.$this->getLastModification().'</div></body></html>';
+        $html= '<!doctype html><html lang="fr"><head>'.$this->head.'<meta charset="utf-8"><meta name="viewport"><title>'.$this->title.'</title></head><body>'.$this->body.'<div id="foot"> '.$this->getLastModification().'</div></body></html>';
         return $html;
     }
 
