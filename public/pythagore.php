@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 require_once('../autoload.php');
-
+const INDICE_MAX = 10;
 $html = new WebPage();
 
 $html->setTitle('Table de Pythagore');
@@ -23,6 +23,9 @@ $html->appendCSS(
 CSS
 );
 
+
+
+
 $html->appendContent(
     <<<HTML
     <h1>Table de Pythagore</h1>
@@ -33,17 +36,31 @@ HTML);
 
 // Première ligne
 for ($colonne = 0; $colonne <= INDICE_MAX; $colonne++) {
-    $html .= "<th>$colonne";
+    $html->appendContent(
+        <<<HTML
+        <th>$colonne
+    HTML); 
 }
 // Les lignes de multiplication
 for ($ligne = 0; $ligne <= INDICE_MAX; $ligne++) {
-    $html .= "\n          <tr><th>$ligne";
+    $html->appendContent(
+        <<<HTML
+        \n          <tr><th>$ligne
+    HTML); 
     // Les colonnes de multiplication
     for ($colonne = 0; $colonne <= INDICE_MAX; $colonne++) {
-        $html .= "<td>" . ($ligne * $colonne);
+    $res = $ligne * $colonne;
+        $html->appendContent(    
+        <<<HTML
+        <td> $res
+    HTML); 
     }
 }
-$html .= "\n        </table>\n";
+$html->appendContent(    
+    <<<HTML
+    \n        </table>\n
+HTML); 
+
 
 
 
